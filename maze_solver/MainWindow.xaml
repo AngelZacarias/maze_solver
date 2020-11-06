@@ -1,0 +1,27 @@
+﻿<Window x:Class="maze_solver.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:maze_solver"
+        mc:Ignorable="d"
+        Title="Maze solver" Height="480" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="None">
+    <Grid>
+        <Image x:Name="IMG_Maze" HorizontalAlignment="Left" Height="348" Margin="10,10,0,0" VerticalAlignment="Top" Width="495" MouseMove="IMG_Maze_MouseMove" Stretch="Fill"/>
+        <Label x:Name="label" Content="Maze Solver" HorizontalAlignment="Center" Margin="510,10,0,0" VerticalAlignment="Top" Foreground="#FFD44807" FontWeight="Bold" FontSize="18" Width="272" HorizontalContentAlignment="Center"/>
+        <ListBox x:Name="LIST_Solution" HorizontalAlignment="Left" Height="287" Margin="515,71,0,0" VerticalAlignment="Top" Width="267"/>
+        <ComboBox x:Name="COMBO_Type" SelectedValuePath="Content" HorizontalAlignment="Left" Height="32" Margin="260,394,0,0" VerticalAlignment="Top" Width="245">
+            <ComboBoxItem>Breadth First Search</ComboBoxItem>
+            <ComboBoxItem IsSelected="True">Depth First Search</ComboBoxItem>
+            <ComboBoxItem>Iterative Depth First Search</ComboBoxItem>
+        </ComboBox>
+        <Button x:Name="button" Content="Select an Image" HorizontalAlignment="Left" Margin="10,394,0,0" VerticalAlignment="Top" Width="174" Height="32" Background="#FFE05311" Foreground="White" BorderBrush="#FFE05311" Click="button_Click"/>
+        <Label x:Name="label_Copy" Content="Solve by:" HorizontalAlignment="Center" Margin="189,394,537,0" VerticalAlignment="Top" Foreground="#FFD44807" Width="66" HorizontalContentAlignment="Right" Height="32" VerticalContentAlignment="Center"/>
+        <Label x:Name="label_Copy1" Content="Results:" HorizontalAlignment="Center" Margin="515,39,229,0" VerticalAlignment="Top" Foreground="#FFD44807" Width="48" HorizontalContentAlignment="Right" Height="32" VerticalContentAlignment="Center"/>
+        <Button x:Name="BTN_Solve" Content="SOLVE" HorizontalAlignment="Left" Margin="515,394,0,0" VerticalAlignment="Top" Width="267" Height="32" Background="#FFE05311" Foreground="White" BorderBrush="#FFE05311" Click="BTN_Solve_Click"/>
+        <Button x:Name="BTN_Solve_Copy" Content="Close" HorizontalAlignment="Left" Margin="706,430,0,0" VerticalAlignment="Top" Width="76" Height="32" Background="White" Foreground="#FFE05311" BorderBrush="White" Click="BTN_Solve_Copy_Click"/>
+        <Button x:Name="BTN_About" Content="About" HorizontalAlignment="Left" Margin="10,430,0,0" VerticalAlignment="Top" Width="76" Height="32" Background="White" Foreground="#FFE05311" BorderBrush="White"/>
+        <Label x:Name="Lbl_coordinates" Content="Mouse coordenates:" HorizontalAlignment="Center" Margin="10,363,608,0" VerticalAlignment="Top" Foreground="#FFD44807" Width="174" Height="26" VerticalContentAlignment="Center"/>
+
+    </Grid>
+</Window>
