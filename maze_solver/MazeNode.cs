@@ -19,6 +19,7 @@ namespace maze_solver
 
 		public MazeNode()
 		{
+			parent = null;
 		}
 
 		public MazeNode(int xC, int yC, MazeNode p)

@@ -15,6 +15,7 @@ namespace maze_solver
 		private Color finishColor;
 		private Color wallColor;
 		private Color pathColor;
+		private int MaxIterations = 10000;
 
 		// the maze image to be worked on
 		private Bitmap maze;
@@ -58,8 +59,12 @@ namespace maze_solver
 					finishNode = DoBreadthFirstSearch(startNode);
 					break;
 				case "Depth First Search":
+					// Try to find the finish node from the start doing dfs
+					finishNode = DoDepthFirstSearch(startNode);
 					break;
 				case "Iterative Depth First Search":
+					// Try to find the finish node from the start doing idfs
+					finishNode = DoIterativeDepthFirstSearch(startNode);
 					break;
 				default:
 					break;
@@ -72,6 +77,77 @@ namespace maze_solver
 			// color the path back to the start node in the bitmap image
 			ColorPathFromFinishToStart(finishNode);
 			return finishNode;
+		}
+
+		public void clearVisited(int nWidth, int nHeight)
+		{
+			for (int w = 0; w<nWidth; w++){
+				for(int h=0; h < nHeight; h++)
+				{
+					visited[w, h] = false;
+				}
+			}
+		}
+
+		public MazeNode DoIterativeDepthFirstSearch(MazeNode start)
+		{
+			Stack<MazeNode> nodeStack = new Stack<MazeNode>();
+			visited = new bool[maze.Width, maze.Height];
+			int maxLevel = 0;
+			while (true)
+			{
+				nodeStack.Clear();
+				clearVisited(maze.Width, maze.Height);
+				int nCurrentLevel;
+				nodeStack.Push(start);
+				maxLevel += 1;
+
+				// keep looking until there are no more nodes in the queue
+				while (nodeStack.Count > 0)
+				{
+					MazeNode current = nodeStack.Pop();
+					visited[current.GetX(), current.GetY()] = true;
+					// Skip any walls
+					if (IsWallNode(current))
+						continue;
+					// If its a finish node, we are done return this node
+					if (IsFinishNode(current))
+					{
+						return current;
+					}
+					AddAllUnvisitedChildren(current, nodeStack);
+					nCurrentLevel = getCurrentLevel(current);
+					if (nCurrentLevel >= maxLevel)
+						break;
+				}
+			}
+		}
+
+		public MazeNode DoDepthFirstSearch(MazeNode start)
+		{
+			// Initialize all visited pixels to false
+			visited = new bool[maze.Width, maze.Height];
+			// Queue will be used to do bfs. Initialize it with the start node
+			Stack<MazeNode> nodeStack = new Stack<MazeNode>();
+			nodeStack.Push(start);
+
+			MazeNode current;
+
+			// keep looking until there are no more nodes in the queue
+			while (nodeStack.Count != 0)
+			{
+				current = nodeStack.Pop();
+				// Skip any walls
+				if (IsWallNode(current))
+					continue;
+				// If its a finish node, we are done return this node
+				if (IsFinishNode(current))
+					return current;
+				AddAllUnvisitedChildren(current, nodeStack);
+			}
+			// if no finish node was found, maze cannot be solved with given
+			// start or maze parameters were not set correctly.
+			return null;
 		}
 
 		// Beforms a Breadth First Search from the start node until it finds
@@ -142,6 +218,74 @@ namespace maze_solver
 			}
 		}
 
+		private void AddAllUnvisitedChildren(MazeNode current, Stack<MazeNode> q)
+		{
+			int x = current.GetX();
+			int y = current.GetY();
+
+			// Left pixel. If it is not out of bounds and previously not visited
+			if (x - 1 >= 0 && !visited[x - 1, y])
+			{
+				visited[x - 1, y] = true;
+				q.Push(new MazeNode(x - 1, y, current));
+			}
+
+			// Right pixel. If it is not out of bounds and previously not visited
+			if (x + 1 < maze.Width && !visited[x + 1, y])
+			{
+				visited[x + 1, y] = true;
+				q.Push(new MazeNode(x + 1, y, current));
+			}
+
+			// top pixel. If it is not out of bounds and previously not visited
+			if (y - 1 >= 0 && !visited[x, y - 1])
+			{
+				visited[x, y - 1] = true;
+				q.Push(new MazeNode(x, y - 1, current));
+			}
+
+			// bottom pixel. If it is not out of bounds and previously not visited
+			if (y + 1 < maze.Height && !visited[x, y + 1])
+			{
+				visited[x, y + 1] = true;
+				q.Push(new MazeNode(x, y + 1, current));
+			}
+		}
+
+		private void AddAllUnvisitedChildren(MazeNode current, Stack<MazeNode> q, int nCurrentLevel, int nMaxLimit)
+		{
+			int x = current.GetX();
+			int y = current.GetY();
+
+			// Left pixel. If it is not out of bounds and previously not visited
+			if (x - 1 >= 0 && !visited[x - 1, y])
+			{
+				visited[x - 1, y] = true;
+				q.Push(new MazeNode(x - 1, y, current));
+			}
+
+			// Right pixel. If it is not out of bounds and previously not visited
+			if (x + 1 < maze.Width && !visited[x + 1, y])
+			{
+				visited[x + 1, y] = true;
+				q.Push(new MazeNode(x + 1, y, current));
+			}
+
+			// top pixel. If it is not out of bounds and previously not visited
+			if (y - 1 >= 0 && !visited[x, y - 1])
+			{
+				visited[x, y - 1] = true;
+				q.Push(new MazeNode(x, y - 1, current));
+			}
+
+			// bottom pixel. If it is not out of bounds and previously not visited
+			if (y + 1 < maze.Height && !visited[x, y + 1])
+			{
+				visited[x, y + 1] = true;
+				q.Push(new MazeNode(x, y + 1, current));
+			}
+		}
+
 		// Given a valid finish node with a linked list back to the start node
 		// will draw a path on the bitmap image from finish to start
 		public void ColorPathFromFinishToStart(MazeNode finishNode)
@@ -191,6 +335,19 @@ namespace maze_solver
 		public bool IsFinishNode(MazeNode node)
 		{
 			return maze.GetPixel(node.GetX(), node.GetY()).ToArgb().Equals(finishColor.ToArgb());
+		}
+		
+		//Will count the current level of the current node based on its fathers recursively
+		public int getCurrentLevel(MazeNode node)
+		{
+			int nLevel = 0;
+			MazeNode current = node;
+			while (current != null)
+			{
+				nLevel += 1;
+				current = current.GetParent();
+			}
+			return nLevel;
 		}
 
 		// Incase you want a custom start node

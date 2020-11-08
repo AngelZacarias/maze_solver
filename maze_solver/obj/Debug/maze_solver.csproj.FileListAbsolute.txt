@@ -30,3 +30,5 @@ E:\CUCEI\Séptimo Semestre\IA\Mazze\maze_solver\maze_solver\obj\Debug\maze_solve
 E:\CUCEI\Séptimo Semestre\IA\Mazze\maze_solver\maze_solver\obj\Debug\maze_solver.pdb
 E:\CUCEI\Séptimo Semestre\IA\Mazze\maze_solver\maze_solver\obj\Debug\About.g.cs
 E:\CUCEI\Séptimo Semestre\IA\Mazze\maze_solver\maze_solver\obj\Debug\About.baml
+C:\Users\angel\Documents\maze_solver\maze_solver\obj\Debug\About.g.cs
+C:\Users\angel\Documents\maze_solver\maze_solver\obj\Debug\About.baml
