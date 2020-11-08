@@ -95,5 +95,10 @@ namespace maze_solver
             */
         }
 
+        private void BTN_About_Click(object sender, RoutedEventArgs e)
+        {
+            About winAbout = new About();
+            winAbout.Show();
+        }
     }
 }

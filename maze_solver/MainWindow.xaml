@@ -20,7 +20,7 @@
         <Label x:Name="label_Copy1" Content="Results:" HorizontalAlignment="Center" Margin="515,39,229,0" VerticalAlignment="Top" Foreground="#FFD44807" Width="48" HorizontalContentAlignment="Right" Height="32" VerticalContentAlignment="Center"/>
         <Button x:Name="BTN_Solve" Content="SOLVE" HorizontalAlignment="Left" Margin="515,394,0,0" VerticalAlignment="Top" Width="267" Height="32" Background="#FFE05311" Foreground="White" BorderBrush="#FFE05311" Click="BTN_Solve_Click"/>
         <Button x:Name="BTN_Solve_Copy" Content="Close" HorizontalAlignment="Left" Margin="706,430,0,0" VerticalAlignment="Top" Width="76" Height="32" Background="White" Foreground="#FFE05311" BorderBrush="White" Click="BTN_Solve_Copy_Click"/>
-        <Button x:Name="BTN_About" Content="About" HorizontalAlignment="Left" Margin="10,430,0,0" VerticalAlignment="Top" Width="76" Height="32" Background="White" Foreground="#FFE05311" BorderBrush="White"/>
+        <Button x:Name="BTN_About" Content="About" HorizontalAlignment="Left" Margin="10,430,0,0" VerticalAlignment="Top" Width="76" Height="32" Background="White" Foreground="#FFE05311" BorderBrush="White" Click="BTN_About_Click"/>
         <Label x:Name="Lbl_coordinates" Content="Mouse coordenates:" HorizontalAlignment="Center" Margin="10,363,608,0" VerticalAlignment="Top" Foreground="#FFD44807" Width="174" Height="26" VerticalContentAlignment="Center"/>
 
     </Grid>
