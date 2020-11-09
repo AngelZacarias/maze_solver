@@ -32,3 +32,20 @@ E:\CUCEI\Séptimo Semestre\IA\Mazze\maze_solver\maze_solver\obj\Debug\About.g.cs
 E:\CUCEI\Séptimo Semestre\IA\Mazze\maze_solver\maze_solver\obj\Debug\About.baml
 C:\Users\angel\Documents\maze_solver\maze_solver\obj\Debug\About.g.cs
 C:\Users\angel\Documents\maze_solver\maze_solver\obj\Debug\About.baml
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\bin\Debug\maze_solver.exe.config
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\bin\Debug\maze_solver.exe
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\bin\Debug\maze_solver.pdb
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\maze_solver.csprojAssemblyReference.cache
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\About.g.cs
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\MainWindow.g.cs
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\App.g.cs
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\maze_solver_MarkupCompile.cache
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\maze_solver_MarkupCompile.lref
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\About.baml
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\MainWindow.baml
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\maze_solver.g.resources
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\maze_solver.Properties.Resources.resources
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\maze_solver.csproj.GenerateResource.cache
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\maze_solver.csproj.CoreCompileInputs.cache
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\maze_solver.exe
+C:\Users\geraa\Documents\CUCEI\7mo\IA\Practica2\maze_solver\maze_solver\obj\Debug\maze_solver.pdb

@@ -47,6 +47,9 @@ namespace maze_solver
 
         private void BTN_Solve_Click(object sender, RoutedEventArgs e)
         {
+            DateTime startedTime;
+            DateTime finalizedTime;
+
             // Get the file names that will be working on from command line
             string outputPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetEntryAssembly().Location);
             // For this project these define the start, end, wall and path colors for the maze
@@ -63,7 +66,10 @@ namespace maze_solver
             PathFinder pf = new PathFinder(mazeImage, start, end, wall, path);
 
             // get the solved maze bitmap from pathfinder
+            startedTime = DateTime.Now;
             MazeNode resultPath = pf.SolveMaze(COMBO_Type.SelectedValue.ToString());
+            finalizedTime = DateTime.Now;
+            Lbl_coordinates.Content = "Elapsed Time:" + finalizedTime.Subtract(startedTime).TotalSeconds.ToString() + " seconds.";
             mazeImage = pf.Maze;
             if (mazeImage == null)
             {

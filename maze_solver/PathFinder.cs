@@ -118,7 +118,11 @@ namespace maze_solver
 					AddAllUnvisitedChildren(current, nodeStack);
 					nCurrentLevel = getCurrentLevel(current);
 					if (nCurrentLevel >= maxLevel)
+                    {
+						//Console.WriteLine(maxLevel.ToString());
 						break;
+					}
+						
 				}
 			}
 		}
@@ -133,6 +137,8 @@ namespace maze_solver
 
 			MazeNode current;
 
+			//int nCurrentLevel=0;
+
 			// keep looking until there are no more nodes in the queue
 			while (nodeStack.Count != 0)
 			{
@@ -141,9 +147,11 @@ namespace maze_solver
 				if (IsWallNode(current))
 					continue;
 				// If its a finish node, we are done return this node
-				if (IsFinishNode(current))
-					return current;
+				if (IsFinishNode(current)) { 
+					//Console.WriteLine(nCurrentLevel.ToString());
+					return current; }
 				AddAllUnvisitedChildren(current, nodeStack);
+				//nCurrentLevel = getCurrentLevel(current);
 			}
 			// if no finish node was found, maze cannot be solved with given
 			// start or maze parameters were not set correctly.
