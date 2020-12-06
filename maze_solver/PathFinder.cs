@@ -67,8 +67,12 @@ namespace maze_solver
 					finishNode = DoIterativeDepthFirstSearch(startNode);
 					break;
 				case "Greedy Best First Search":
-					// Try to find the finish node from the start doing idfs
+					// Try to find the finish node from the start doing gbfs
 					finishNode = DoGreedyFirstSearch(startNode);
+					break;
+				case "A* Search":
+					//Try to find the finish node from the start doing A*
+					finishNode = DoAStarSearch(startNode);
 					break;
 				default:
 					break;
@@ -231,6 +235,44 @@ namespace maze_solver
 			return null;
 		}
 
+		public MazeNode DoAStarSearch(MazeNode start)
+		{
+			// Initialize all visited pixels to false
+			visited = new bool[maze.Width, maze.Height];
+			// Queue will be used to do bfs. Initialize it with the start node
+			List<MazeNode> nodeStack = new List<MazeNode>();
+			nodeStack.Add(start);
+
+			MazeNode current;
+			MazeNode Goal = start.Goal(maze);
+
+			//int nCurrentLevel=0;
+
+			// keep looking until there are no more nodes in the queue
+			while (nodeStack.Count != 0)
+			{
+				int count = nodeStack.Count();
+				current = nodeStack[count - 1];
+				nodeStack.RemoveAt(count - 1);
+				// Skip any walls
+				if (IsWallNode(current))
+					continue;
+				// If its a finish node, we are done return this node
+				if (IsFinishNode(current))
+				{
+					//Console.WriteLine(nCurrentLevel.ToString());
+					return current;
+				}
+
+				AddAllUnvisitedChildren(current, nodeStack, Goal,start);
+
+				//nCurrentLevel = getCurrentLevel(current);
+			}
+			// if no finish node was found, maze cannot be solved with given
+			// start or maze parameters were not set correctly.
+			return null;
+		}
+
 		// Adds each child of current node that is not visited to q
 		// can only be called from inside DoBreadthFirstSearch since visited
 		// needs to be initialized
@@ -302,6 +344,7 @@ namespace maze_solver
 			}
 		}
 
+		//This method is used only for Greedy Best First Search
 		private void AddAllUnvisitedChildren(MazeNode current, List<MazeNode> q, MazeNode Goal)
 		{
 			int x = current.GetX();
@@ -347,6 +390,54 @@ namespace maze_solver
             {
 				q.Add(child);
             }
+		}
+
+		//This method is used for A* algorithm
+		private void AddAllUnvisitedChildren(MazeNode current, List<MazeNode> q, MazeNode Goal, MazeNode Start)
+		{
+			int x = current.GetX();
+			int y = current.GetY();
+			List<MazeNode> temp = new List<MazeNode>();
+
+			// Left pixel. If it is not out of bounds and previously not visited
+			if (x - 1 >= 0 && !visited[x - 1, y])
+			{
+				visited[x - 1, y] = true;
+				temp.Add(new MazeNode(x - 1, y, current));
+			}
+
+			// Right pixel. If it is not out of bounds and previously not visited
+			if (x + 1 < maze.Width && !visited[x + 1, y])
+			{
+				visited[x + 1, y] = true;
+				temp.Add(new MazeNode(x + 1, y, current));
+			}
+
+			// top pixel. If it is not out of bounds and previously not visited
+			if (y - 1 >= 0 && !visited[x, y - 1])
+			{
+				visited[x, y - 1] = true;
+				temp.Add(new MazeNode(x, y - 1, current));
+			}
+
+			// bottom pixel. If it is not out of bounds and previously not visited
+			if (y + 1 < maze.Height && !visited[x, y + 1])
+			{
+				visited[x, y + 1] = true;
+				temp.Add(new MazeNode(x, y + 1, current));
+			}
+
+			AStarSC MyComparer = new AStarSC();
+			foreach (MazeNode child in temp)
+			{
+				child.Heurs(Goal,Start);
+			}
+			temp.Sort(MyComparer);
+
+			foreach (MazeNode child in temp)
+			{
+				q.Add(child);
+			}
 		}
 
 		private void AddAllUnvisitedChildren(MazeNode current, Stack<MazeNode> q, int nCurrentLevel, int nMaxLimit)

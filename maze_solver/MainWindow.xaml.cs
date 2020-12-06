@@ -69,7 +69,7 @@ namespace maze_solver
             startedTime = DateTime.Now;
             MazeNode resultPath = pf.SolveMaze(COMBO_Type.SelectedValue.ToString());
             finalizedTime = DateTime.Now;
-            Lbl_coordinates.Content = "Elapsed Time:" + finalizedTime.Subtract(startedTime).TotalSeconds.ToString() + " seconds.";
+            Lbl_coordinates.Content = "Elapsed Time:" + finalizedTime.Subtract(startedTime).TotalSeconds.ToString() + " seconds. ";
             mazeImage = pf.Maze;
             if (mazeImage == null)
             {
@@ -84,7 +84,7 @@ namespace maze_solver
                     LIST_Solution.Items.Add("("+current.GetX()+", "+ current.GetY()+")");
                     current = current.GetParent();
                 }
-                
+                Lbl_coordinates.Content = Lbl_coordinates.Content + LIST_Solution.Items.Count.ToString()+ " elements";
                 // Save the solved maze image into the output file path
                 mazeImage.Save(outputPath + @"\solved_maze.png");
                 fileUri = new Uri(outputPath + @"\solved_maze.png");

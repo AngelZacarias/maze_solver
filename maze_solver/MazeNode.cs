@@ -18,6 +18,8 @@ namespace maze_solver
 		private int y; // represents y coordinate inside the image
 		private MazeNode parent; // points to the node which added this node to the queue
 		public int costh = 0;
+		public int costg = 0;
+		public int costf = 0;
 
 		public MazeNode()
 		{
@@ -28,6 +30,7 @@ namespace maze_solver
 		{
 			this.x = xC;
 			this.y = yC;
+			this.costg = 0;
 			parent = p;
 		}
 
@@ -63,15 +66,29 @@ namespace maze_solver
 			parent = p;
 		}
 
+		//This Herus Function is used only for GBFS Algorithm so it only calculate the Manhattam distance
 		public void Heurs(MazeNode Goal)
 		{
 			
 			int Heuristic = 0;
 			Console.WriteLine("Calculating for: " + this.x + " , " + this.y);
 			Console.WriteLine(Goal.x.ToString() + " , " + Goal.y.ToString());
-			Heuristic += Math.Abs(this.x - Goal.x) + Math.Abs(this.y - Goal.y); ;
+			Heuristic += Math.Abs(this.x - Goal.x) + Math.Abs(this.y - Goal.y);
 			// setting the state heurisitc cost.
 			this.costh = Heuristic;
+		}
+
+		//This Herus method is used for A* Algorithm it will calculate the Manhattam distance to goal and start
+		public void Heurs(MazeNode Goal, MazeNode Start)
+		{
+			Console.WriteLine("Calculating for: " + this.x + " , " + this.y);
+			Console.WriteLine(Goal.x.ToString() + " , " + Goal.y.ToString());
+			Console.WriteLine(Start.x.ToString() + " , " + Start.y.ToString());
+			this.costh = Math.Abs(this.x - Goal.x) + Math.Abs(this.y - Goal.y);
+			this.costg += this.parent.costg +1;
+			// setting the state heurisitc cost.
+			this.costf = this.costh + this.costg;
+			Console.WriteLine("F: " + this.costf.ToString());
 		}
 
 		public MazeNode Goal(Bitmap maze)
@@ -135,11 +152,19 @@ namespace maze_solver
 			{
 				return 0;
 			}
-
-			// CompareTo() method 
 			return y.costh.CompareTo(x.costh);
-
 		}
 	}
 
+	class AStarSC : IComparer<MazeNode>
+	{
+		public int Compare(MazeNode x, MazeNode y)
+		{
+			if (x.costf == 0 || y.costf == 0)
+			{
+				return 0;
+			}
+			return y.costf.CompareTo(x.costf);
+		}
+	}
 }

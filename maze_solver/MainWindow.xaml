@@ -15,6 +15,7 @@
             <ComboBoxItem IsSelected="True">Depth First Search</ComboBoxItem>
             <ComboBoxItem>Iterative Depth First Search</ComboBoxItem>
             <ComboBoxItem>Greedy Best First Search</ComboBoxItem>
+            <ComboBoxItem>A* Search</ComboBoxItem>
         </ComboBox>
         <Button x:Name="button" Content="Select an Image" HorizontalAlignment="Left" Margin="10,394,0,0" VerticalAlignment="Top" Width="174" Height="32" Background="#FFE05311" Foreground="White" BorderBrush="#FFE05311" Click="button_Click"/>
         <Label x:Name="label_Copy" Content="Solve by:" HorizontalAlignment="Center" Margin="189,394,537,0" VerticalAlignment="Top" Foreground="#FFD44807" Width="66" HorizontalContentAlignment="Right" Height="32" VerticalContentAlignment="Center"/>
